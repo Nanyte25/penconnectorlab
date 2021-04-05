@@ -10,7 +10,7 @@ const normalize = require('normalize-url');
 const User = require('../../models/User');
 
 // @route    POST api/users
-// @desc     Register user
+// @desc     Register user / returning the JWT token 
 // @access   Public
 router.post(
   '/',
@@ -64,7 +64,7 @@ router.post(
           id: user.id
         }
       };
-
+      // Sign token , token expires in 5 day's for testing 
       jwt.sign(
         payload,
         config.get('jwtSecret'),
