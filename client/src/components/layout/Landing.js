@@ -15,7 +15,7 @@ const Landing = ({ isAuthenticated }) => {
           <h1 className='x-large'>Pentester's Connector</h1>
           <p className='lead'>
             Create a Pentesting profile/portfolio, share posts and get help from
-            other developers
+            other pentester's or IT professionals.
           </p>
           <div className='buttons'>
             <Link to='/register' className='btn btn-primary'>

@@ -27,6 +27,7 @@
     "normalize-url": "^4.5.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "react-alert": "^7.0.2",
     "validator": "^13.5.2"
   },
   "devDependencies": {
