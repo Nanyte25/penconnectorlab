@@ -12,10 +12,10 @@ const Landing = ({ isAuthenticated }) => {
     <section className='landing'>
       <div className='dark-overlay'>
         <div className='landing-inner'>
-          <h1 className='x-large'>Pentester's Connector</h1>
+          <h1 className='x-large'>Developer Connector</h1>
           <p className='lead'>
-            Create a Pentesting profile/portfolio, share posts and get help from
-            other pentester's or IT professionals.
+            Create a developer profile/portfolio, share posts and get help from
+            other developers
           </p>
           <div className='buttons'>
             <Link to='/register' className='btn btn-primary'>
