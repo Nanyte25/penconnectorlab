@@ -10,7 +10,7 @@ const normalize = require('normalize-url');
 const User = require('../../models/User');
 
 // @route    POST api/users
-// @desc     Register user / returning the JWT token 
+// @desc     Register user
 // @access   Public
 router.post(
   '/',
@@ -18,7 +18,7 @@ router.post(
   check('email', 'Please include a valid email').isEmail(),
   check(
     'password',
-    'Please enter a password with 8 or more characters'
+    'Please enter a password with 6 or more characters'
   ).isLength({ min: 6 }),
   async (req, res) => {
     const errors = validationResult(req);
@@ -64,7 +64,7 @@ router.post(
           id: user.id
         }
       };
-      // Sign token , token expires in 5 day's for testing 
+
       jwt.sign(
         payload,
         config.get('jwtSecret'),
