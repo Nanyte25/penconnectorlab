@@ -13,6 +13,8 @@ import Posts from '../posts/Posts';
 import Post from '../post/Post';
 import NotFound from '../layout/NotFound';
 import PrivateRoute from '../routing/PrivateRoute';
+import Contact from '../layout/Contact';
+
 
 const Routes = props => {
   return (
@@ -20,6 +22,7 @@ const Routes = props => {
       <Alert />
       <Switch>
         <Route exact path="/register" component={Register} />
+        <Route exact path="/contact" component={Contact} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/profiles" component={Profiles} />
         <Route exact path="/profile/:id" component={Profile} />
