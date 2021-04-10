@@ -22,6 +22,7 @@
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.0.2",
     "express-rate-limit": "^5.2.6",
     "express-validator": "^6.10.0",
     "gravatar": "^1.8.1",
@@ -36,7 +37,8 @@
     "passport-jwt": "^4.0.0",
     "react-alert": "^7.0.2",
     "react-bootstrap": "^1.5.2",
-    "validator": "^13.5.2"
+    "validator": "^13.5.2",
+    "xss-clean": "^0.1.1"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",

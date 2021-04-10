@@ -5,15 +5,25 @@ const transporter = require('./config/config/config');
 const path = require('path');
 const rateLimit = require("express-rate-limit");
 const dotenv = require('dotenv');
+const xss = require('xss-clean');
+const mongoSanitize = require('express-mongo-sanitize');
+
+// loading the config using the dotenv module
 dotenv.config();
 
 const app = express();
+
+// Data Sanitization against NoSQL Injection Attacks
+app.use(mongoSanitize());
 
 // Connect Database
 connectDB();
 
 // Init Middleware
 app.use(express.json());
+
+// Data Sanitization against XSS
+app.use(xss());
 
 
 // add rate-limiting to protect api end-point from being DDoS
