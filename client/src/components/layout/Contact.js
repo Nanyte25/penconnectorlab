@@ -1,101 +1,83 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { Form, Button } from 'react-bootstrap';
-
 
 const Contact = () => {
-  const [state, setState] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
-  const [result, setResult] = useState(null);
-
-  const sendEmail = event => {
-    event.preventDefault();
-    axios
-      .post('/send', { ...state })
-      .then(response => {
-        setResult(response.data);
-        setState({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-      })
-      .catch(() => {
-        setResult({
-          success: false,
-          message: 'Something went wrong. Try again later'
-        });
-      });
-  };
-
-  const onInputChange = event => {
-    const { name, value } = event.target;
-
-    setState({
-      ...state,
-      [name]: value
-    });
+  const submitRequest = async (e) => {
+    e.preventDefault();
+    console.log({ email, message });
+    const response = await fetch("/access", { 
+      method: 'POST', 
+      headers: { 
+          'Content-type': 'application/json'
+      }, 
+      body: JSON.stringify({email, message}) 
+  }); 
+    const resData = await response.json(); 
+    if (resData.status === 'success'){
+      alert("Message Sent."); 
+      this.resetForm()
+  }else if(resData.status === 'fail'){
+      alert("Message failed to send.")
+  }
   };
 
   return (
     <div>
-      {result && (
-        <p className={`${result.success ? 'success' : 'error'}`}>
-          {result.message}
-        </p>
-      )}
-      <form onSubmit={sendEmail}>
-        <Form.Group controlId="name">
-          <Form.Label>Full Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="name"
-            value={state.name}
-            placeholder="Enter your full name"
-            onChange={onInputChange}
-          />
-        </Form.Group>
-        <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="text"
-            name="email"
-            value={state.email}
-            placeholder="Enter your email"
-            onChange={onInputChange}
-          />
-        </Form.Group>
-        <Form.Group controlId="subject">
-          <Form.Label>Subject</Form.Label>
-          <Form.Control
-            type="text"
-            name="subject"
-            value={state.subject}
-            placeholder="Enter subject"
-            onChange={onInputChange}
-          />
-        </Form.Group>
-        <Form.Group controlId="subject">
-          <Form.Label>Message</Form.Label>
-          <Form.Control
-            as="textarea"
-            name="message"
-            value={state.message}
-            rows="3"
-            placeholder="Enter your message"
-            onChange={onInputChange}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </form>
+      <div className="flex flex-col items-center justify-center bg-gray-200"></div>
+      <div className="w-full max-w-sm m-auto flex flex-col my-32">
+        <form
+          className="form"
+          onSubmit={submitRequest}
+        >
+          <h2 className="large text-primary">
+            Contact Form
+          </h2>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="Email"
+            >
+              Your Email
+            </label>
+            <input
+              className="form-group"
+              type="text"
+              name="email"
+              placeholder="Email Address"
+              onChange={e => setEmail(e.target.value)}
+              value={email}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              className="form-group"
+              htmlFor="message"
+            >
+              Message For Us
+            </label>
+            <textarea
+              className="form-text"
+              name="message"
+              type="text"
+              placeholder="Tell us your purpose"
+              onChange={e => setMessage(e.target.value)}
+              value={message}
+              required
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <button
+              className="btn btn-primary"
+              type="submit"
+            >
+              Send A Request
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
