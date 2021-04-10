@@ -15,7 +15,7 @@ npm install
 
 ```
 
-- Next chnage directories in the to the root of the directory `pentesterlabs`
+- Next change directories in the to the root of the directory `pentesterlabs`
 
 ```
 
