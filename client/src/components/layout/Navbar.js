@@ -20,6 +20,12 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
         </Link>
       </li>
       <li>
+        <Link to="/fileupload">
+          <i className="fas fa-user" />{' '}
+          <span className="hide-sm">FileUpload</span>
+        </Link>
+      </li>
+      <li>
         <a onClick={logout} href="#!">
           <i className="fas fa-sign-out-alt" />{' '}
           <span className="hide-sm">Logout</span>

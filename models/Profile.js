@@ -1,3 +1,4 @@
+//Require mongoose package
 const mongoose = require('mongoose');
 
 const ProfileSchema = new mongoose.Schema({
@@ -110,4 +111,5 @@ const ProfileSchema = new mongoose.Schema({
   }
 });
 
+//Exports our profileSchema with Profile as a reference, this reference will be used in other models
 module.exports = mongoose.model('profile', ProfileSchema);

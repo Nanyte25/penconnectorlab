@@ -14,7 +14,7 @@ import Post from '../post/Post';
 import NotFound from '../layout/NotFound';
 import PrivateRoute from '../routing/PrivateRoute';
 import Contact from '../layout/Contact';
-
+//import FileUpload from "../layout/FileUpload/DropzoneS3Uploader";
 
 const Routes = props => {
   return (
@@ -27,6 +27,7 @@ const Routes = props => {
         <Route exact path="/profiles" component={Profiles} />
         <Route exact path="/profile/:id" component={Profile} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
+      
         <PrivateRoute exact path="/create-profile" component={ProfileForm} />
         <PrivateRoute exact path="/edit-profile" component={ProfileForm} />
         <PrivateRoute exact path="/add-experience" component={AddExperience} />

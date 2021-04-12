@@ -52,8 +52,9 @@ router.post(
         avatar,
         password
       });
-
+// Encrypt the password and salt the password
       const salt = await bcrypt.genSalt(10);
+      // const hash = await bcrypt.hash(req.body.password, salt);
 
       user.password = await bcrypt.hash(password, salt);
 

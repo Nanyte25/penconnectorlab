@@ -3,14 +3,26 @@ const helmet = require("helmet");
 const connectDB = require('./config/db');
 const path = require('path');
 const rateLimit = require("express-rate-limit");
+const cors = require("cors");
+const AWS = require('aws-sdk');
+const fs = require('fs');
+
 const dotenv = require('dotenv');
 const xss = require('xss-clean');
 const mongoSanitize = require('express-mongo-sanitize');
 
+
 // loading the config using the dotenv module
 dotenv.config();
 
+const router = express.Router();
+
+
 const app = express();
+
+ // We export the router so that the server.js file can pick it up
+ module.exports = router;
+
 
 // Data Sanitization against NoSQL Injection Attacks
 app.use(mongoSanitize());
@@ -38,10 +50,10 @@ app.use("/api/", apiLimiter);
 // adding helmet to secure Express http headers
 app.use(helmet ());
 
-
 const buildPath = path.join(__dirname, '..', 'build');
 app.use(express.json());
 app.use(express.static(buildPath));
+
 
 
 // Define Routes
