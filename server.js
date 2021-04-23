@@ -3,7 +3,6 @@ const helmet = require("helmet");
 const connectDB = require('./config/db');
 const path = require('path');
 const rateLimit = require("express-rate-limit");
-
 const xss = require('xss-clean');
 const mongoSanitize = require('express-mongo-sanitize');
 
@@ -45,6 +44,8 @@ app.use("/api/", apiLimiter);
 
 // adding helmet to secure Express http headers
 app.use(helmet ());
+
+
 
 const buildPath = path.join(__dirname, '..', 'build');
 app.use(express.json());
