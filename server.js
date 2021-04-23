@@ -6,11 +6,9 @@ const rateLimit = require("express-rate-limit");
 const xss = require('xss-clean');
 const mongoSanitize = require('express-mongo-sanitize');
 
-
 // loading the config using the dotenv module
 
 const router = express.Router();
-
 
 const app = express();
 
@@ -44,12 +42,9 @@ app.use("/api/", apiLimiter);
 // adding helmet to secure Express http headers
 app.use(helmet ());
 
-
-
 const buildPath = path.join(__dirname, '..', 'build');
 app.use(express.json());
 app.use(express.static(buildPath));
-
 
 
 // Define Routes
