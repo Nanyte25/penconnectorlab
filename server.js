@@ -3,17 +3,13 @@ const helmet = require("helmet");
 const connectDB = require('./config/db');
 const path = require('path');
 const rateLimit = require("express-rate-limit");
-const cors = require("cors");
-const AWS = require('aws-sdk');
-const fs = require('fs');
-
-
+const dotenv = require('dotenv');
 const xss = require('xss-clean');
 const mongoSanitize = require('express-mongo-sanitize');
 
 
 // loading the config using the dotenv module
-
+dotenv.config();
 
 const router = express.Router();
 
