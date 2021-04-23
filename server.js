@@ -7,13 +7,13 @@ const cors = require("cors");
 const AWS = require('aws-sdk');
 const fs = require('fs');
 
-const dotenv = require('dotenv');
+
 const xss = require('xss-clean');
 const mongoSanitize = require('express-mongo-sanitize');
 
 
 // loading the config using the dotenv module
-dotenv.config();
+
 
 const router = express.Router();
 
