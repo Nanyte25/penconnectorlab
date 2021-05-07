@@ -3,3 +3,4 @@ config/default.json
 config/config
 client/build
 client/.eslintcache
+node_modules
