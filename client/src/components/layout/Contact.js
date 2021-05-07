@@ -1,85 +1,74 @@
-import React, { useState } from 'react';
+import React from 'react';
+import axios from 'axios';
 
-const Contact = () => {
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
 
-  const submitRequest = async (e) => {
-    e.preventDefault();
-    console.log({ email, message });
-    const response = await fetch("/access", { 
-      method: 'POST', 
-      headers: { 
-          'Content-type': 'application/json'
-      }, 
-      body: JSON.stringify({email, message}) 
-  }); 
-    const resData = await response.json(); 
-    if (resData.status === 'success'){
-      alert("Message Sent."); 
-      this.resetForm()
-  }else if(resData.status === 'fail'){
-      alert("Message failed to send.")
+class Contact extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+      message: ''
+    }
   }
-  };
 
-  return (
-    <div>
-      <div className="flex flex-col items-center justify-center bg-gray-200"></div>
-      <div className="w-full max-w-sm m-auto flex flex-col my-32">
-        <form
-          className="form"
-          onSubmit={submitRequest}
-        >
-          <h2 className="large text-primary">
-            Contact Form
-          </h2>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="Email"
-            >
-              Your Email
-            </label>
-            <input
-              className="form-group"
-              type="text"
-              name="email"
-              placeholder="Email Address"
-              onChange={e => setEmail(e.target.value)}
-              value={email}
-              required
-            />
+  handleSubmit(e){
+    e.preventDefault();
+    axios({
+      method: "POST",
+      url:"http://localhost:5000/send",
+      data:  this.state
+    }).then((response)=>{
+      if (response.data.status === 'success') {
+        alert("Message Sent.");
+        this.resetForm()
+      } else if (response.data.status === 'fail') {
+        alert("Message failed to send.")
+      }
+    })
+  }
+
+  resetForm(){
+    this.setState({name: '', email: '',subject:'', message: ''})
+  }
+
+  render() {
+    return(
+      <div className="App">
+        <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input type="text" className="form-control" value={this.state.name} onChange={this.onNameChange.bind(this)} />
           </div>
-          <div className="mb-4">
-            <label
-              className="form-group"
-              htmlFor="message"
-            >
-              Message For Us
-            </label>
-            <textarea
-              className="form-text"
-              name="message"
-              type="text"
-              placeholder="Tell us your purpose"
-              onChange={e => setMessage(e.target.value)}
-              value={message}
-              required
-            />
+          <div className="form-group">
+            <label htmlFor="exampleInputEmail1">Email address</label>
+            <input type="email" className="form-control" aria-describedby="emailHelp" value={this.state.email} onChange={this.onEmailChange.bind(this)} />
           </div>
-          <div className="flex items-center justify-between">
-            <button
-              className="btn btn-primary"
-              type="submit"
-            >
-              Send A Request
-            </button>
+          <div className="form-group">
+            <label htmlFor="message">Message</label>
+            <textarea className="form-control" rows="5" value={this.state.message} onChange={this.onMessageChange.bind(this)} />
           </div>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
-    </div>
-  );
-};
+    );
+  }
+
+  onNameChange(event) {
+    this.setState({name: event.target.value})
+  }
+
+  onEmailChange(event) {
+    this.setState({email: event.target.value})
+  }
+
+  onMessageChange(event) {
+    this.setState({message: event.target.value})
+  }
+
+  // eslint-disable-next-line no-dupe-class-members
+  handleSubmit(_event) {
+  }
+}
 
 export default Contact;

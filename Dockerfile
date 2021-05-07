@@ -26,9 +26,9 @@ COPY --from=client /usr/app/client/build/ ./client/build/
 RUN ls
 
 WORKDIR /usr/src/app/server/
-COPY server/package*.json ./
+COPY /package*.json ./
 RUN npm install -qy
-COPY server/ ./
+COPY / ./
 
 ENV PORT 8080
 

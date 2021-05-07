@@ -2,6 +2,11 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Card } from 'react-bootstrap';
+import { Button} from 'react-bootstrap';
+
+
+
 
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
@@ -12,7 +17,7 @@ const Landing = ({ isAuthenticated }) => {
     <section className='landing'>
       <div className='dark-overlay'>
         <div className='landing-inner'>
-          <h1 className='x-large'>PenConnector</h1>
+          <h1 className='x-large'>Penconnectorlab</h1>
           <p className='lead'>
             Create a pentesters profile/portfolio, share posts and get help from
             other pentesters
@@ -25,9 +30,22 @@ const Landing = ({ isAuthenticated }) => {
               Login
             </Link>
           </div>
+          <div>
+      <h2>
+      Top 10 Exercise
+      </h2>
+      </div>
+        <Card className style={{ width: '18rem' }}>
+        <Card.Img className variant="top" src="cve-2020-11xxx.png" />
+        <Card.Body>
+          <Card.Title></Card.Title>
+          <Card.Text></Card.Text>
+          <Button variant="primary">Get Penconnectorlab Pro</Button>
+        </Card.Body>
+      </Card>
         </div>
       </div>
-    </section>
+  </section> 
   );
 };
 

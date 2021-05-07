@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.scss';
+
 
 const Navbar = ({ auth: { isAuthenticated }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to="/profiles">Pentesters</Link>
+        <Link to="/profiles"></Link>
       </li>
       <li>
         <Link to="/posts">Posts</Link>
@@ -20,10 +23,18 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
         </Link>
       </li>
       <li>
-        <Link to="/fileupload">
+        <Link to="/uploads">
           <i className="fas fa-user" />{' '}
-          <span className="hide-sm">FileUpload</span>
+          <span className="hide-sm">Uploads</span>
         </Link>
+      </li>
+      <li>
+        <Link to="/fileslist">
+          <i className="fas fa-user" />{' '}
+          <span className="hide-sm">List of upload Files Reports</span>
+        </Link>
+      </li>
+      <li>
       </li>
       <li>
         <a onClick={logout} href="#!">
@@ -46,6 +57,9 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
         <Link to="/contact">Contacts</Link>
       </li>
       <li>
+        <Link to="/cards">Top Free Exercise</Link>
+      </li>
+      <li>
         <Link to="/login">Login</Link>
       </li>
     </ul>
@@ -54,8 +68,7 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
   return (
     <nav className="navbar bg-dark">
       <h1>
-        <Link to="/">
-          <i className="fas fa-code" /> PenConnector
+        <Link to="/"> <i className="fas fa-code" /> PenConnectorLabs
         </Link>
       </h1>
       <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
