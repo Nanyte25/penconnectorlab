@@ -1,3 +1,4 @@
+//Require mongoose package
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -49,4 +50,5 @@ const PostSchema = new Schema({
   }
 });
 
+//Exports our postSchema with post as a reference, this reference will be used in other models
 module.exports = mongoose.model('post', PostSchema);

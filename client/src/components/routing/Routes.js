@@ -14,6 +14,10 @@ import Post from '../post/Post';
 import NotFound from '../layout/NotFound';
 import PrivateRoute from '../routing/PrivateRoute';
 import Contact from '../layout/Contact';
+import FilesList from '../../pages/fileslist/FilesList';
+import Uploads from '../../pages/fileslist/Uploads';
+import Cards from '../../cards/Cards';
+
 
 
 const Routes = props => {
@@ -25,8 +29,11 @@ const Routes = props => {
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/profiles" component={Profiles} />
+        <Route exact path="/cards" component={Cards} />
         <Route exact path="/profile/:id" component={Profile} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/uploads" component={Uploads}/>
+        <PrivateRoute exact path="/fileslist" component={FilesList}/>
         <PrivateRoute exact path="/create-profile" component={ProfileForm} />
         <PrivateRoute exact path="/edit-profile" component={ProfileForm} />
         <PrivateRoute exact path="/add-experience" component={AddExperience} />

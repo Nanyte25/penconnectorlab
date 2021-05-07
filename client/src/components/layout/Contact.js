@@ -1,103 +1,74 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
-import { Form, Button } from 'react-bootstrap';
 
 
-const Contact = () => {
-  const [state, setState] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+class Contact extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+      message: ''
+    }
+  }
 
-  const [result, setResult] = useState(null);
+  handleSubmit(e){
+    e.preventDefault();
+    axios({
+      method: "POST",
+      url:"http://localhost:5000/send",
+      data:  this.state
+    }).then((response)=>{
+      if (response.data.status === 'success') {
+        alert("Message Sent.");
+        this.resetForm()
+      } else if (response.data.status === 'fail') {
+        alert("Message failed to send.")
+      }
+    })
+  }
 
-  const sendEmail = event => {
-    event.preventDefault();
-    axios
-      .post('/send', { ...state })
-      .then(response => {
-        setResult(response.data);
-        setState({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-      })
-      .catch(() => {
-        setResult({
-          success: false,
-          message: 'Something went wrong. Try again later'
-        });
-      });
-  };
+  resetForm(){
+    this.setState({name: '', email: '',subject:'', message: ''})
+  }
 
-  const onInputChange = event => {
-    const { name, value } = event.target;
+  render() {
+    return(
+      <div className="App">
+        <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input type="text" className="form-control" value={this.state.name} onChange={this.onNameChange.bind(this)} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="exampleInputEmail1">Email address</label>
+            <input type="email" className="form-control" aria-describedby="emailHelp" value={this.state.email} onChange={this.onEmailChange.bind(this)} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="message">Message</label>
+            <textarea className="form-control" rows="5" value={this.state.message} onChange={this.onMessageChange.bind(this)} />
+          </div>
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    );
+  }
 
-    setState({
-      ...state,
-      [name]: value
-    });
-  };
+  onNameChange(event) {
+    this.setState({name: event.target.value})
+  }
 
-  return (
-    <div>
-      {result && (
-        <p className={`${result.success ? 'success' : 'error'}`}>
-          {result.message}
-        </p>
-      )}
-      <form onSubmit={sendEmail}>
-        <Form.Group controlId="name">
-          <Form.Label>Full Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="name"
-            value={state.name}
-            placeholder="Enter your full name"
-            onChange={onInputChange}
-          />
-        </Form.Group>
-        <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="text"
-            name="email"
-            value={state.email}
-            placeholder="Enter your email"
-            onChange={onInputChange}
-          />
-        </Form.Group>
-        <Form.Group controlId="subject">
-          <Form.Label>Subject</Form.Label>
-          <Form.Control
-            type="text"
-            name="subject"
-            value={state.subject}
-            placeholder="Enter subject"
-            onChange={onInputChange}
-          />
-        </Form.Group>
-        <Form.Group controlId="subject">
-          <Form.Label>Message</Form.Label>
-          <Form.Control
-            as="textarea"
-            name="message"
-            value={state.message}
-            rows="3"
-            placeholder="Enter your message"
-            onChange={onInputChange}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </form>
-    </div>
-  );
-};
+  onEmailChange(event) {
+    this.setState({email: event.target.value})
+  }
+
+  onMessageChange(event) {
+    this.setState({message: event.target.value})
+  }
+
+  // eslint-disable-next-line no-dupe-class-members
+  handleSubmit(_event) {
+  }
+}
 
 export default Contact;

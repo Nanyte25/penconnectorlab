@@ -1,19 +1,63 @@
 const express = require('express');
 const helmet = require("helmet");
 const connectDB = require('./config/db');
-const transporter = require('./config/config/config');
 const path = require('path');
 const rateLimit = require("express-rate-limit");
-const dotenv = require('dotenv');
-dotenv.config();
+const xss = require('xss-clean');
+const mongoSanitize = require('express-mongo-sanitize');
+const fileupload = require("express-fileupload");
+const fileRoute = require('./routes/api/file');
+var multer = require('multer')
+// const nodemailer = require("nodemailer");
+const cors = require('cors');
+
+// loading the config using the dotenv module
+
+const router = express.Router();
 
 const app = express();
+
+ // We export the router so that the server.js file can pick it up
+ module.exports = router;
+
+// Get instance by resolving ClamScan promise object, issue with getting correct socket for MAC OSX Big Sur configured, could get it working on Ubuntu no promblem.
+//const NodeClam = require('clamscan');
+
+//const ClamScan = new NodeClam().init({
+  //debug_mode: true,
+  //scan_recursively: false,
+  //clamdscan: {
+  //    socket: '/usr/local/var/run/clamav/clamd.sock',
+  //    timeout: 120000,
+  //    local_fallback: true,
+  //    path: 'usr/local/etc/clamav',
+  //    config_file: '/usr/local/etc/clamav/freashclam.conf'
+ // },/
+//});
+
+
+ app.use(cors())
+
+ app.use(fileRoute);
+
+
+
+ 
+ 
+
+// Data Sanitization against NoSQL Injection Attacks
+app.use(mongoSanitize());
 
 // Connect Database
 connectDB();
 
 // Init Middleware
 app.use(express.json());
+
+
+
+// Data Sanitization against XSS
+app.use(xss());
 
 
 // add rate-limiting to protect api end-point from being DDoS
@@ -29,50 +73,9 @@ app.use("/api/", apiLimiter);
 // adding helmet to secure Express http headers
 app.use(helmet ());
 
-
 const buildPath = path.join(__dirname, '..', 'build');
 app.use(express.json());
 app.use(express.static(buildPath));
-
-app.post('/send', (req, res) => {
-  try {
-    const mailOptions = {
-      from: req.body.email, // sender address
-      to: process.env.email, // list of receivers
-      subject: req.body.subject, // Subject line
-      html: `
-      <p>You have a new contact request.</p>
-      <h3>Contact Details</h3>
-      <ul>
-        <li>Name: ${req.body.name}</li>
-        <li>Email: ${req.body.email}</li>
-        <li>Subject: ${req.body.subject}</li>
-        <li>Message: ${req.body.message}</li>
-      </ul>
-      `
-    };
-
-    transporter.sendMail(mailOptions, function (err, info) {
-      if (err) {
-        res.status(500).send({
-          success: false,
-          message: 'Something went wrong. Try again later'
-        });
-      } else {
-        res.send({
-          success: true,
-          message: 'Thanks for contacting us. We will get back to you shortly'
-        });
-      }
-    });
-  } catch (error) {
-    res.status(500).send({
-      success: false,
-      message: 'Something went wrong. Try again later'
-    });
-  }
-});
-
 
 // Define Routes
 app.use('/api/users', require('./routes/api/users'));
@@ -86,7 +89,7 @@ if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static('client/build'));
 
-  app.get('*', (req, res) => {
+  app.get('*', (_req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }

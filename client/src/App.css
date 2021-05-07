@@ -371,6 +371,18 @@ button {
   grid-gap: 1rem;
 }
 
+.page-container{
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+
+}
+
+.content-wapp{
+
+flex: 1;
+
+}
 .profile-top {
   grid-area: top;
   display: flex;

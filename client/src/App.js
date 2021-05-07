@@ -7,6 +7,8 @@ import { LOGOUT } from './actions/types';
 import Contact from './components/layout/Contact';
 import About from './components/layout/About';
 
+
+
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';

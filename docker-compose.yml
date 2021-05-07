@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  web:
+    build: 
+      context: ./client
+      network: host
+      dockerfile: Dockerfile
+    ports:
+     - "80:80"
+  api-server:
+    network_mode: "host"
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      network: host
+    ports:
+     - "8080:8080"
+  db:
+    network_mode: "host"
+    image: mongo
+    ports:
+     - "27017:27017"
+    volumes:
+      - type: volume
+        source: dbdata
+        target: /data/db
+        volume:
+          nocopy: true
+volumes:
+  dbdata:

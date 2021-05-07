@@ -1,3 +1,4 @@
+//Require mongoose package
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
@@ -22,5 +23,5 @@ const UserSchema = new mongoose.Schema({
     default: Date.now
   }
 });
-
+//Exports our userSchema with User as a reference, this reference will be used in other models
 module.exports = mongoose.model('user', UserSchema);
