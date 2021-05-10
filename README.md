@@ -6,7 +6,7 @@
 
 ### Installation
 
-- Gti clone the repo locally 
+- Git clone the repo locally 
 
 ```
 cd /client 
