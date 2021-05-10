@@ -2,7 +2,7 @@
 
 ## Introduction
 
-- This reposistiry contains a Secure Social Media application for pentesters called `penconnector` the repository name is `peconnectorlab`.
+- This repository contains a Secure Social Media application for pentesters called `penconnector` the repository name is `peconnectorlab`.
 
 ### Installation
 
