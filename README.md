@@ -29,6 +29,8 @@ npm install && npm run dev
 
 ## How secure is my new code?
 
+- Below is a SQL injection mitigation solution, not nosql as this application is nosql based.
+
 After mitigating a vulnerability, you can send a Pull Request to gently ask the secDevLabs community to review your new secure codes. If you're feeling a bit lost, try having a look at [this mitigation solution](https://github.com/globocom/secDevLabs/pull/29), it might help! 🚀
 
 ## OWASP Top 10 (2017) apps: 💻
