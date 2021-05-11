@@ -23,15 +23,18 @@ npm install && npm run dev
 
 ```
 
+
+
+
 ## App Screenshots
 
 <p align="center">
-    <img src="/docs/Screenshot%202021-05-11%20at%2014.15.08.png" alt="MarineGEO circle logo" width="350" height="250"/>
+    <img src="/docs/Screenshot%202021-05-11%20at%2014.15.08.png" alt="Dark" width="350" height="250"/>
    &nbsp; &nbsp; &nbsp; &nbsp;
 
-   <img src="/docs/Screenshot%202021-05-11%20at%2014.09.41.png" alt="MarineGEO circle logo" width="350" height="250"/>
+   <img src="/docs/Screenshot%202021-05-11%20at%2014.09.41.png" alt="Dark" width="350" height="250"/>
 
-   <img src="/docs/Screenshot%202021-05-11%20at%2014.14.12.png" alt="MarineGEO circle logo" width="350" height="250"/>
+   <img src="/docs/Screenshot%202021-05-11%20at%2014.14.12.png" alt="light" width="350" height="250"/>
    </p>
 
 ## troubleshooting sections 
