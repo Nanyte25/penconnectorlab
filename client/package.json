@@ -6,7 +6,7 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@sentry/react": "^6.2.5",
     "aos": "^2.3.4",
-    "aws-sdk": "^2.884.0",
+    "aws-sdk": "^2.1103.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "chartjs": "^0.3.24",
