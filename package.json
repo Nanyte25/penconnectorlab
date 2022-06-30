@@ -50,7 +50,7 @@
     "multiparty": "^4.2.2",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "normalize-url": "^4.5.0",
-    "passport": "^0.4.1",
+    "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "react-alert": "^7.0.2",
     "react-bootstrap": "^1.5.2",
