@@ -35,7 +35,7 @@
     "express-mongo-sanitize": "^2.0.2",
     "express-rate-limit": "^5.2.6",
     "express-validator": "^6.10.0",
-    "file-type": "^3.9.0",
+    "file-type": "^16.5.4",
     "gravatar": "^1.8.1",
     "gridfs-stream": "^1.1.1",
     "helmet": "^4.4.1",
