@@ -56,7 +56,7 @@
     "react-bootstrap": "^1.5.2",
     "react-dropzone": "^11.3.2",
     "react-google-recaptcha": "^2.1.0",
-    "snyk": "^1.585.0",
+    "snyk": "^1.1226.0",
     "superagent": "^6.1.0",
     "validator": "^13.5.2",
     "xss-clean": "^0.1.1"
