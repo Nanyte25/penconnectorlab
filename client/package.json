@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "@sentry/react": "^6.2.5",
+    "@sentry/react": "^6.19.7",
     "aos": "^2.3.4",
     "aws-sdk": "^2.1596.0",
     "axios": "^0.21.1",
